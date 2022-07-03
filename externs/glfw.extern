@@ -1,0 +1,2 @@
+extern glfwInit, glfwWindowHint, glfwCreateWindow, glfwTerminate, glfwMakeContextCurrent
+extern glfwSetInputMode, glfwSwapBuffers, glfwPollEvents, glfwGetKey, glfwWindowShouldClose

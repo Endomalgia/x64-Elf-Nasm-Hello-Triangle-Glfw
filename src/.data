@@ -1,0 +1,38 @@
+section .data
+WINDOW_NAME:			db	"Hewwo UwU", 0x0
+WINDOW_WIDTH:			equ	1024
+WINDOW_HEIGHT:			equ	768
+
+ANTIALIASING:			equ	4					; 4x antialiasing
+OPENGL_VERSION_MAJOR		equ	3					; OpenGL 3.x
+OPENGL_VERSION_MINOR		equ	3					; OpenGL x.3
+
+FMT_DEFAULT:			db	"%s", 0xa, 0x0
+FMT_HEX:			db	"%x", 0xa, 0x0
+
+MSG_FAILED_TO_INIT_GLFW:	db	"Failed to Initialize GLFW", 0x0
+MSG_GLFW_FAILED_TO_INIT_WINDOW:	db	"Failed to Open GLFW Window", 0x0
+MSG_FAILED_TO_INIT_GLEW:	db	"Failed to Initialize GLFW", 0x0
+
+VERTEX_BUFFER_DATA:		dd	-1.0, -1.0, 0.0, 1.0, -1.0, 0.0, 0.0, 1.0, 0.0
+VERTEX_BUFFER_DATA_LEN:		equ	$-VERTEX_BUFFER_DATA
+
+VERTEX_SHADER_FILEPATH:		db	"assets/shaders/default.vsh", 0x0
+FRAGMENT_SHADER_FILEPATH:	db	"assets/shaders/default.fsh", 0x0
+
+vs0:				db	"#version 330 core", 0xa, 0x0
+vs1:				db	"layout(location = 0) in vec3 vertexPosition_modelspace;", 0xa, 0x0
+vs2:				db	"void main() {", 0xa, 0x0
+vs3:				db	"	gl_Position.xyz = vertexPosition_modelspace;", 0xa, 0x0
+vs4:				db	"	gl_Position.w = 1.0;", 0xa, 0x0
+vs5:				db	"}", 0xa, 0x0
+
+fs0:				db	"#version 330 core", 0xa, 0x0
+fs1:				db	"out vec3 color;", 0xa, 0x0
+fs2:				db	"void main() {", 0xa, 0x0
+fs3:				db	"	color = vec3(1,0,0);", 0xa, 0x0
+fs4:				db	"}", 0xa, 0x0
+
+;Check to see in compiled c if \/\/\/\/ should be a qword and like generally check other words elsewhere also uwu
+VERTEX_SHADER_TEXT:		dq	vs0, vs1, vs2, vs3, vs4, vs5, 0x0
+FRAGMENT_SHADER_TEXT:		dq	fs0, fs1, fs2, fs3, fs4, 0x0

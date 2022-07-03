@@ -1,0 +1,4 @@
+extern glGenVertexArrays, glBindVertexArray, glGenBuffers, glBindBuffer, glBufferData
+extern glCreateShader, glShaderSource, glCreateProgram, glAttachShader, glLinkProgram
+extern glCompileShader, glClear, glUseProgram, glEnableVertexAttribArray, glVertexAttribPointer
+extern glDrawArrays, glDisableVertexAttribArray

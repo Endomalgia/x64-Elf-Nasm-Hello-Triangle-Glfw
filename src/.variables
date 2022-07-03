@@ -1,0 +1,13 @@
+section .bss
+window_id:		resq	1
+
+program_id:		resq	1
+
+vertex_array_id:	resq	1
+vertex_buffer:		resq	1
+
+vertex_shader_text:	resb	1
+fragment_shader_text:	resb	1
+
+vertex_shader:		resq	1
+fragment_shader:	resq	1

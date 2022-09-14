@@ -23,28 +23,26 @@
 ; Assembly files
 %include "src/init.asm"
 %include "src/bind_vbuff.asm"
-%include "src/compile_shaders.asm"
+%include "src/shaders.asm"
 %include "src/loop.asm"
 
 section .text
-global main
-main:
-	push	rbp
-
+global _start
+_start:
 
 	; Initialize the Window, GLFW, and GLUT
 	call init
 
-	; Bind Vertex buffer and Vertex array
-	call bind_vbuff
-
 	; Compile shaders and create+link program
 	call compile_shaders
+	
+	; Bind Vertex buffer and Vertex array
+	call bind_vbuff
 
 	; Enter the main loop
 	call loop
 
-
-	pop	rbp
-	mov	rax,	0
-	ret
+	; Exit and return 0
+	mov	rdi,	0
+	mov	rax,	0xE7
+	syscall

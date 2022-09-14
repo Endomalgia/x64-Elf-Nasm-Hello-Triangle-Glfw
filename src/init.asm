@@ -1,5 +1,4 @@
 section .text
-global create_window
 init:
 	push	rbp
 
@@ -26,7 +25,7 @@ init:
 	mov	rdi,	GLFW_CONTEXT_VERSION_MINOR
 	call glfwWindowHint			; Hint the OpenGL x.? version
 
-	mov	rsi,	GLFW_OPENGL_CORE_PROFILE
+	mov	rsi,	OPENGL_PROFILE
 	mov	rdi,	GLFW_OPENGL_PROFILE
 	call glfwWindowHint			; Hint the OpenGL profile
 

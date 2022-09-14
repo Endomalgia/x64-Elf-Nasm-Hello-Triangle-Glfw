@@ -1,17 +1,30 @@
 section .text
-global main_loop
 loop:
 	push	rbp
 
 	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; Clear the screen and initialize the program
-
+	
 	mov	rdi,	GL_COLOR_BUFFER_BIT
 	call glClear					; Clear the screen
 
+	movd	xmm3,	dword [CLEAR_COLOR+4*3]
+	movd	xmm2,	dword [CLEAR_COLOR+4*2]
+	movd	xmm1,	dword [CLEAR_COLOR+4]
+	movd	xmm0,	dword [CLEAR_COLOR]
+	call glClearColor				; Sets the clear color
+	
 	mov	rdi,	[program_id]
 	call glUseProgram				; Use the program (the one with the shaders)
 	
+	mov	rcx,	WINDOW_HEIGHT
+	mov	rdx,	WINDOW_WIDTH
+	mov	rsi,	0
+	mov	rdi,	0
+	call glViewport
+
 	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; Draw to the screen
+
+	
 
 	mov	rdi,	0
 	call glEnableVertexAttribArray
@@ -28,7 +41,7 @@ loop:
 	mov	rdi,	0
 	call glVertexAttribPointer
 
-	mov	rdx,	3
+	mov	rdx,	6
 	mov	rsi,	0
 	mov	rdi,	GL_TRIANGLES
 	call glDrawArrays

@@ -1,5 +1,4 @@
 section .text
-global init_vbuff
 bind_vbuff:
 	push	rbp
 

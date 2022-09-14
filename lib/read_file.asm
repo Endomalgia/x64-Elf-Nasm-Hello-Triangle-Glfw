@@ -4,30 +4,30 @@
 ;
 
 section .data
-err_msg:		db	"READ FILE ERROR: file is either empty or doesnt exist", 0x0
-err_msg_len:		db	$-err_msg
+err_msg_read_file:		db	"READ FILE ERROR: file is either empty or doesnt exist", 0x0
+err_msg_len_read_file:		db	$-err_msg_read_file
 
 section .bss
-stat_read_file:		resb	144
+stat_read_file:			resb	144
 
 struc STAT_READ_FILE
-    .st_dev         resq 1
-    .st_ino         resq 1
-    .st_nlink       resq 1
-    .st_mode        resd 1
-    .st_uid         resd 1
-    .st_gid         resd 1
-    .pad0           resb 4
-    .st_rdev        resq 1
-    .st_size        resq 1
-    .st_blksize     resq 1
-    .st_blocks      resq 1
-    .st_atime       resq 1
-    .st_atime_nsec  resq 1
-    .st_mtime       resq 1
-    .st_mtime_nsec  resq 1
-    .st_ctime       resq 1
-    .st_ctime_nsec  resq 1
+    .st_dev        		 resq 1
+    .st_ino        		 resq 1
+    .st_nlink      		 resq 1
+    .st_mode       		 resd 1
+    .st_uid        		 resd 1
+    .st_gid        		 resd 1
+    .pad0          		 resb 4
+    .st_rdev       		 resq 1
+    .st_size       		 resq 1
+    .st_blksize    		 resq 1
+    .st_blocks     		 resq 1
+    .st_atime      		 resq 1
+    .st_atime_nsec 		 resq 1
+    .st_mtime      		 resq 1
+    .st_mtime_nsec 		 resq 1
+    .st_ctime      		 resq 1
+    .st_ctime_nsec 		 resq 1
 endstruc
 
 section .text
@@ -47,7 +47,7 @@ read_file:
 	mov	r8,	QWORD [stat_read_file + STAT_READ_FILE.st_size] ; Store the file size in r8
 
 	cmp	rax,	0
-	jne file_is_empty		; Exit and print error if stat doesnt exit properly
+	jne file_is_empty_read_file	; Exit and print error if stat doesnt exit properly
 
 	mov	rdx,	0
 	mov	rsi,	0
@@ -76,15 +76,15 @@ read_file:
 
 
 	mov	rax,	r8		; Return the buffer into rax
-	
+	mov	rdi,	r12		; Return the length into rdi	
 
 	pop rbp
 	ret
 
-file_is_empty:
+file_is_empty_read_file:
 
-	mov	rdx,	err_msg_len
-	mov	rsi,	err_msg
+	mov	rdx,	err_msg_len_read_file
+	mov	rsi,	err_msg_read_file
 	mov	rdi,	1
 	mov	rax,	0x1
 	syscall				; Print the error message

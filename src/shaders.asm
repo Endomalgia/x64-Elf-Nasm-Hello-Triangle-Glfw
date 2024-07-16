@@ -34,6 +34,17 @@ compile_shaders:
 	mov	rdi,	qword [fragment_shader]
 	call glCompileShader			; Compile the fragment shader
 
+	;mov	rdi,	qword [fragment_shader]
+	;mov	rsi,	512
+	;mov	rdx,	0x0
+	;mov	rcx,	info_log
+	;call glGetShaderInfoLog
+
+	;mov rsi,	info_log
+	;mov rdi,	FMT_DEFAULT
+	;mov rax,	0x1
+	;call printf
+
 	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; Create and link program
 
 	call glCreateProgram			; Create a new program

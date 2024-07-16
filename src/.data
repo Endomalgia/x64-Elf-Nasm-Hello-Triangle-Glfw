@@ -7,6 +7,13 @@ ANTIALIASING:			equ	4					; 4x antialiasing
 OPENGL_VERSION_MAJOR		equ	3					; OpenGL 3.x
 OPENGL_VERSION_MINOR		equ	3					; OpenGL x.3
 
+CLEAR_COLOR_RED:    dd  0.0
+CLEAR_COLOR_GREEN:  dd  1.0
+CLEAR_COLOR_BLUE:   dd  0.0
+CLEAR_COLOR_ALPHA:  dd  1.0
+CLEAR_COLOR:  dd  0.0,  1.0,  0.0,  1.0 ; Green
+
+FMT_FLOAT:    db  "%f", 0xa, 0x0
 FMT_DEFAULT:			db	"%s", 0xa, 0x0
 FMT_HEX:			db	"%x", 0xa, 0x0
 
@@ -20,17 +27,17 @@ VERTEX_BUFFER_DATA_LEN:		equ	$-VERTEX_BUFFER_DATA
 VERTEX_SHADER_FILEPATH:		db	"assets/shaders/default.vsh", 0x0
 FRAGMENT_SHADER_FILEPATH:	db	"assets/shaders/default.fsh", 0x0
 
-vs0:				db	"#version 330 core", 0xa, 0x0
-vs1:				db	"layout(location = 0) in vec3 vertexPosition_modelspace;", 0xa, 0x0
-vs2:				db	"void main() {", 0xa, 0x0
-vs3:				db	"	gl_Position.xyz = vertexPosition_modelspace;", 0xa, 0x0
-vs4:				db	"	gl_Position.w = 1.0;", 0xa, 0x0
+vs0:				db	"#version 330 core", 0xa
+vs1:				db	"layout(location = 0) in vec3 vertexPosition_modelspace;", 0xa
+vs2:				db	"void main() {", 0xa
+vs3:				db	"	gl_Position.xyz = vertexPosition_modelspace;", 0xa
+vs4:				db	"	gl_Position.w = 1.0;", 0xa
 vs5:				db	"}", 0xa, 0x0
 
-fs0:				db	"#version 330 core", 0xa, 0x0
-fs1:				db	"out vec3 color;", 0xa, 0x0
-fs2:				db	"void main() {", 0xa, 0x0
-fs3:				db	"	color = vec3(1,0,0);", 0xa, 0x0
+fs0:				db	"#version 330 core", 0xa
+fs1:				db	"out vec4 color;", 0xa
+fs2:				db	"void main() {", 0xa
+fs3:				db	"	color = vec4(1.0f,0.0f,1.0f,1.0f);", 0xa
 fs4:				db	"}", 0xa, 0x0
 
 ;Check to see in compiled c if \/\/\/\/ should be a qword and like generally check other words elsewhere also uwu

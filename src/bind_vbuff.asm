@@ -3,7 +3,7 @@ bind_vbuff:
 	push	rbp
 
 	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; Create and bind vertex array object
-	
+
 	mov	rsi,	vertex_array_id
 	mov	rdi,	1
 	call glGenVertexArrays			; Generate a vertex array

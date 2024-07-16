@@ -11,3 +11,5 @@ fragment_shader_text:	resb	1
 
 vertex_shader:		resq	1
 fragment_shader:	resq	1
+
+;info_log: resq  32

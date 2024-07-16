@@ -2,9 +2,9 @@ section .text
 init:
 	push	rbp
 
-	
+
 	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; Initialize GLFW
-	
+
 	call glfwInit
 
 	; Print error message if GLFW fails to init
@@ -25,18 +25,18 @@ init:
 	mov	rdi,	GLFW_CONTEXT_VERSION_MINOR
 	call glfwWindowHint			; Hint the OpenGL x.? version
 
-	mov	rsi,	OPENGL_PROFILE
+	mov	rsi,	GLFW_OPENGL_CORE_PROFILE
 	mov	rdi,	GLFW_OPENGL_PROFILE
 	call glfwWindowHint			; Hint the OpenGL profile
 
 	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; Create a GLFW window
-	
+
 	mov	r8,	NULL
 	mov	rcx,	NULL
 	mov	rdx,	WINDOW_NAME
 	mov	rsi,	WINDOW_HEIGHT
 	mov	rdi,	WINDOW_WIDTH
-	call glfwCreateWindow	
+	call glfwCreateWindow
 
 	mov	qword [window_id],	rax	; Store the window_id in a variable
 
@@ -56,13 +56,13 @@ init:
 	; Print an error message if glewInit != 0
 	cmp	rax,	0
 	jne failed_to_init_GLEW			; Jump if anything but 0 is returned
-		
+
 	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; Set window input mode
 
 	mov	rdx,	GL_TRUE
 	mov	rsi,	GLFW_STICKY_KEYS
 	mov	rdi,	qword [window_id]
-	call glfwSetInputMode	
+	call glfwSetInputMode
 
 	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -72,7 +72,7 @@ init:
 
 
 failed_to_init_GLFW: ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; Print failed to init GLFW error and exit
-	
+
 	mov	rsi,	MSG_FAILED_TO_INIT_GLFW
 	mov	rdi,	FMT_DEFAULT
 	mov	rax,	1
@@ -84,7 +84,7 @@ failed_to_init_GLFW: ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; Print failed to init G
 	ret
 
 window_is_null:	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; Print window is null error and exit
-	
+
 	mov	rsi,	MSG_GLFW_FAILED_TO_INIT_WINDOW
 	mov	rdi,	FMT_DEFAULT
 	mov	rax,	1
@@ -98,7 +98,7 @@ window_is_null:	;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; Print window is null e
 	ret
 
 failed_to_init_GLEW: ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; Print failed to init GLEW error and exit
-	
+
 	mov	rsi,	MSG_FAILED_TO_INIT_GLEW
 	mov	rdi,	FMT_DEFAULT
 	mov	rax,	1

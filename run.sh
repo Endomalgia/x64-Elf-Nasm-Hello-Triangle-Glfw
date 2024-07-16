@@ -11,8 +11,8 @@ OPGL_LIB=/usr/lib64/libGL.so
 GLFW_LIB=/usr/lib64/libglfw.so
 
 # Make folders
-mkdir $PROJ_DIR/obj
-mkdir $PROJ_DIR/build
+mkdir -p $PROJ_DIR/obj
+mkdir -p $PROJ_DIR/build
 
 # Assembly the assembler source file with nasm
 nasm -f elf64 $ASM_FILE -o $OBJ_FILE
